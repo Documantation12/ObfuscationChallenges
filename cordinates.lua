@@ -38,6 +38,7 @@ credit.BackgroundColor3 = Color3.new(0, 0, 0)
 credit.Position = UDim2.new(-0.0517418832, 0, 0.930982113, 0)
 credit.Size = UDim2.new(0, 235, 0, 19)
 credit.Font = Enum.Font.SciFi
+credit.Text = "."
 credit.TextColor3 = Color3.new(1, 1, 1)
 credit.TextSize = 14
 
