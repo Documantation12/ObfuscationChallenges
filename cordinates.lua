@@ -61,15 +61,28 @@ cords.Font = Enum.Font.SciFi
 cords.Text = ""
 cords.TextColor3 = Color3.new(1, 1, 1)
 cords.TextSize = 14
--- Scripts:
-game:GetService("UserInputService").InputBegan:connect(onKeyPress)
 
+-- Helper function to round coordinates
+local function roundCoords(vector3)
+    return Vector3.new(math.floor(vector3.X + 0.5), math.floor(vector3.Y + 0.5), math.floor(vector3.Z + 0.5))
+end
+
+-- Scripts:
 grab.MouseButton1Down:Connect(function()
-    cords.Text = tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+    local roundedCoords = roundCoords(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+    cords.Text = tostring(roundedCoords)
     wait(0.25)
-    print(''..tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position))
+    print(tostring(roundedCoords))
 end)
 
 copy.MouseButton1Down:Connect(function()
-    setclipboard(""..cords.Text)
+    setclipboard(cords.Text)
+end)
+
+local UserInputService = game:GetService("UserInputService")
+
+UserInputService.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.P then
+        coordgui:Destroy()
+    end
 end)
